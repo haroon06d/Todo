@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Notes</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Press Start 2P', cursive, sans-serif; /* Retro anime font */
+            background-color: #111111; /* Dark background */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+        h1 {
+            color: #ff66cc; /* Neon pink */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 40px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #222222;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            text-align: center;
+        }
+        .create-btn {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            padding: 12px 20px;
+            background-color: #ff66cc;
+            color: #111;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 18px;
+            width: 250px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 102, 204, 0.4);
+        }
+        .create-btn:hover {
+            background-color: #ff3385;
+            transform: scale(1.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #333333;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        li:hover {
+            background-color: #444444;
+        }
+        li a.delete-btn {
+            color: #ff6666;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        li a.delete-btn:hover {
+            color: #ff0000;
+        }
+        .note-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ff66cc;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TODO ></h1>
+        <a href="{% url 'note_create' %}" class="create-btn">Create New Note</a>
+        <ul>
+            {% for note in notes %}
+                <li>
+                    <span class="note-title">{{ note.title }}</span> - {{ note.content }}
+                    <a href="{% url 'note_delete' note.id %}" class="delete-btn">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
